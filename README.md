@@ -60,7 +60,8 @@ The environment will be on a laptop or destop running Windows 7 or Mac OS-X 10.1
 You have access to test network equiment either real or virtual.
 
 Requirements:
- *Docker for OS-X or Toolbox Installed and Working*
+
+ **Docker for OS-X or Toolbox Installed and Working**
 
  Docker for OS-X (and Windows 10 but beware of the requirements and incompatabilities)
  https://docs.docker.com/engine/installation/
@@ -68,9 +69,9 @@ Requirements:
  Docker for Windows (Docker Toolbox)
  https://docs.docker.com/toolbox/toolbox_install_windows/
 
- *Some familiarity with Docker* (How to run an image and how to manage and interact with Docker containers)
+ **Some familiarity with Docker** (How to run an image and how to manage and interact with Docker containers)
 
- *Some familiarity with Ansible* (How to create, update, and run a playbook)
+ **Some familiarity with Ansible** (How to create, update, and run a playbook)
  Cisco IOS based network devices to run plays against
  
 
