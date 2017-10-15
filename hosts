@@ -1,0 +1,24 @@
+[local]
+localhost ansible_connection=local
+
+[cisco]
+#arctic-rtr01 host=10.1.10.26 port=22 username=vagrant password=vagrant
+#csr1 host=85.190.176.51 username=ntc password=ntc123
+#csr2 host=153.92.38.213 username=ntc password=ntc123
+#csr3 host=85.190.181.111 username=ntc password=ntc123
+#csr4 host=85.190.176.158 username=ntc password=ntc123
+#csr5 host=85.190.180.175 username=ntc password=ntc123
+#csr6 host=85.190.178.5 username=ntc password=ntc123
+#arctic-sw01 host=10.1.10.100 port=22 username=cisco password=cisco
+#arctic-sw02 host=10.1.10.102 port=22 username=cisco password=cisco
+
+[cisco:vars]
+ansible_connection=local
+username=ntc 
+password=ntc123
+
+[asr]
+dc-rtr[1:10]
+
+[asr:vars]
+ansible_executable=''

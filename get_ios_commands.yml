@@ -1,0 +1,29 @@
+---
+- hosts: cisco
+  connection: local
+  gather_facts: False
+
+  vars:
+    cli:
+        host: "{{ host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+
+  tasks:
+    - name: Run show run
+      ios_command:
+        commands: "{{ item }}"
+        provider: "{{ cli }}"
+
+      with_items:
+      - "show run"
+      - "show ip int br"
+      - "show version"
+      - "show ip route" 
+      - "show cdp nei" 
+
+      register: output
+
+    - debug: var=output
+
+    - local_action: copy content="{{ output }}" dest="./{{ inventory_hostname }}.show"
