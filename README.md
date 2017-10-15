@@ -108,6 +108,7 @@ You should be in /ansible.
 Clone the Base Ansible 2.4 repository which has a base Ansible environment.
 ```
 $git clone https://github.com/cldeluna/ansible2_4_base.git
+cd ansible2_4_base
 ```
 4. Update the hosts file to reflect the devices to act on
 6. Update the test-ios.yml or get_ios_commands.yml file to update the hosts and commands to execute.
