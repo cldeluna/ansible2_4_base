@@ -1,7 +1,7 @@
 # NetDevOps - Trusty Ansible Network Automation Framework
 ## Using Ansible for Common Networking Tasks
 ### Created:  2016-06-05  
-### Modified: 2027-10-15
+### Modified: 2017-10-15
 #### Claudia de Luna (claudia.deluna@dimensiondata.com)
 
 
@@ -69,7 +69,7 @@ Requirements:
  https://docs.docker.com/toolbox/toolbox_install_windows/
 
  *Some familiarity with Docker* (How to run an image and how to manage and interact with Docker containers)
- 
+
  *Some familiarity with Ansible* (How to create, update, and run a playbook)
  Cisco IOS based network devices to run plays against
  
