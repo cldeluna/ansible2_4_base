@@ -80,13 +80,13 @@ Steps:
 1. Pull the Trusty Ansible Docker image from Dockerhub at https://hub.docker.com/r/cldeluna/xenial-ansible/
 
 Pull the image from DockerHub.
-
->$docker pull cldeluna/xenial-ansible
-
+```
+$docker pull cldeluna/xenial-ansible
+```
 Confirm the image is available locally on your system.
-
->$docker images
-
+```
+$docker images
+```
 2. Instantiate an interactive container using that image (you will be in the /ansible directory)
 
 Run a containder from the image in interactive mode.
