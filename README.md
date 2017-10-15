@@ -129,5 +129,6 @@ List files.
 + Format the show commands logs
 + Staging QA
 + More detailed instructions
++ Add Ansible Tower for Client Demos
 + Move to roles
 
