@@ -89,11 +89,11 @@ $docker images
 ```
 2. Instantiate an interactive container using that image (you will be in the /ansible directory)
 
-Run a containder from the image in interactive mode.
+Run a contaider from the image in interactive mode.
 ```
 $docker run -it cldeluna/xenial-ansible
 ```
-Your terminal will now be in the container, confirm the version of Ansible with this command:
+Your terminal will now be in the container and you can interact with the platform. For example, confirm the version of Ansible with this command:
 ```
 $ansible --version
 ```
