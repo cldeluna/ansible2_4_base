@@ -90,45 +90,45 @@ $docker images
 2. Instantiate an interactive container using that image (you will be in the /ansible directory)
 
 Run a containder from the image in interactive mode.
-
->$docker run -it cldeluna/xenial-ansible
-
+```
+$docker run -it cldeluna/xenial-ansible
+```
 Your terminal will now be in the container, confirm the version of Ansible with this command:
-
->$ansible --version
-
+```
+$ansible --version
+```
 3. Pull the working files using git pull (git clone https://github.com/cldeluna/ansible2_4_base.git)
 
 Confirm your location in the directgory.
-
->$pwd
-
+```
+$pwd
+```
 You should be in /ansible.
 
 Clone the Base Ansible 2.4 repository which has a base Ansible environment.
-
->$git clone https://github.com/cldeluna/ansible2_4_base.git
-
+```
+$git clone https://github.com/cldeluna/ansible2_4_base.git
+```
 4. Update the hosts file to reflect the devices to act on
 6. Update the test-ios.yml or get_ios_commands.yml file to update the hosts and commands to execute.
 7. Confirm that config backups have been saved in the /ansible directory (get_ios_commands.yml)
 
 Look for *.show commands.
-
->$ls -al *.show
-
+```
+$ls -al *.show
+```
 8. Confirm that show command output has been saved in the /ansible/show_commands directory (test-ios.yml).
 
 Move into the /ansible/show_commands directory.
-
->$cd show_commands
-
+```
+$cd show_commands
+```
 List files.
+```
+$ls -al
+```
 
->$ls -al
-
-
-##Things to work on next:
+## Things to work on next:
 
 + A Docker image based on Mint to provide a GUI
 + Add a few more tools and customizations to the Dockerfile
