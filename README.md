@@ -61,7 +61,7 @@ You have access to test network equiment either real or virtual.
 
 Requirements:
 
- **Docker for OS-X or Toolbox Installed and Working**
+ **Docker for OS-X or Docker Toolbox for Windows Installed and Working**
 
  Docker for OS-X (and Windows 10 but beware of the requirements and incompatabilities)
  https://docs.docker.com/engine/installation/
