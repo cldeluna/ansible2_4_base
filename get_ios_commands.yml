@@ -10,7 +10,7 @@
         password: "{{ password }}"
 
   tasks:
-    - name: Run show run
+    - name: Iterate over show commands
       ios_command:
         commands: "{{ item }}"
         provider: "{{ cli }}"
