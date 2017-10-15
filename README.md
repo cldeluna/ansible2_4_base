@@ -2,7 +2,7 @@
 ## Using Ansible for Common Networking Tasks
 ### Created:  2016-06-05  
 ### Modified: 2027-10-15
-#### Claudia de Luna (claudia@indigowire.net)
+#### Claudia de Luna (claudia.deluna@dimensiondata.com)
 
 
 The "Trusty Ansible project" grew from the desire to apply many of the DevOps principles to my day to day networking work and my desire to learn Ansible.
