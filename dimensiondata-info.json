@@ -1,0 +1,14 @@
+{
+  "source_code": {
+    "scm": "https://scm.dimensiondata.com/claudia.deluna/ansible2_4_base"
+  },
+  "organization": {},
+  "project_name": "ansible2_4_base",
+  "description": "Field Automation Platform based on Ansible 2.4 utilizing a Docker container",
+  "version": "1.0",
+  "development_status": "release",
+  "primary_contact": "Claudia de Luna",
+  "lead_developer": "Claudia de Luna",
+  "license": "internal-only",
+  "open_to_contribution": "yes"
+}
