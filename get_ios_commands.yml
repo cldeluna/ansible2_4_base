@@ -23,7 +23,7 @@
       - "show ip route" 
       - "show cdp nei" 
 
-      register: output
+      register: output.stdout_lines
 
     - debug: var=output
 

@@ -27,7 +27,7 @@
 
     - name: Save Show Command output
       copy:
-        content: "{{ intbr.stdout }}"
+        content: "{{ intbr.stdout_lines }}"
         dest: "./SHOW/{{ inventory_hostname }}.log"
 
 
