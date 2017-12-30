@@ -1,6 +1,7 @@
 ---
 
-- hosts: cisco
+- name: Another way of obtaining show commands and backups
+  hosts: cisco
   connection: local
   gather_facts: False
   ignore_errors: yes
@@ -24,7 +25,7 @@
     - name: Save Show Command output
       copy:
         content: "{{ intbr.stdout }}"
-        dest: ./SHOW/{{ inventory_hostname }}.log"
+        dest: "./SHOW/{{ inventory_hostname }}.log"
 
 
     - name: Backup a configuration on a device
