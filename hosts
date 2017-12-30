@@ -28,7 +28,7 @@ cs03 host=10.1.10.103
 cs04 host=10.1.10.104
 
 [nexus_pair]
-cs01-04
+cs0[1-4]
 
 [nexus_pair:vars]
 ansible_connection=local
