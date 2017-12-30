@@ -1,7 +1,6 @@
 ---
 
-- name: Backing up Cisco Configurations
-  hosts: cisco
+- hosts: cisco
   connection: local
   gather_facts: False
   ignore_errors: yes
