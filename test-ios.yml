@@ -38,5 +38,5 @@
 
       register: bkup
 
-    - debug: var=bkup.stdout_lines
+    - debug: var=bkup
 
