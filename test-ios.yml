@@ -19,9 +19,7 @@
         commands:
            - show ip int br
            - show inventory
-        host: "{{ inventory_hostname }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
+        provider: "{{ cli }}"
 
       register: intbr
 
