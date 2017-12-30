@@ -1,0 +1,97 @@
+---
+hostname: bdc-cswi02
+partner_hostname: bdc-cswi01
+timezone: PST -8 0
+summer_timezone: PDT
+domain: net.ejgallo.com
+ntp1: 10.28.245.123
+ntp2: 10.150.25.123
+source_interface: mgmt0
+banner: "================================================================================\n
+UNAUTHORIZED ACCESS TO THIS NETWORK DEVICE IS PROHIBITED.\n
+You must have explicit permission to access or configure this device.\n
+All activities performed on this device may be logged, and violations of this\n
+policy may result in disciplinary action, and may be reported to\n
+law enforcement.\n
+There is no right to privacy on this device.\n
+Use of this system shall constitute consent to monitoring.\n
+================================================================================\n^"  
+loopback0: 10.0.140.212
+stp_pri: 4096
+
+# VPC Information
+# Peer Keepalive
+# Note Peer Keepalive Port channel is hardcoced to 1 in the template nxos_base_vpc.j2
+pk_context: Peer-Keepalive
+pk_ints: e1/43,e1/45
+pk_ip: 192.168.0.254
+pk_ip_dest: 192.168.0.253
+pk_ip_cidr: 30
+# Peer LInks
+pl_ints: e1/53,e1/54
+pl_po: 11
+vpc_pri: 2
+
+#Routing
+area: 0
+user_area: 40
+
+# Management Interface Configuration
+mgmt_ip: 10.149.10.133/24
+mgmt_gateway: 10.149.10.1
+
+# SNMP
+contact: Network Services
+location: Brandy Data Center (BDC)
+rw: BlowP0p
+ro: T00tsie
+
+# Syslog
+syslog1: 10.28.3.129
+syslog_level: 6
+
+# Interfaces
+# L3 Interlink
+l3_interlink_int: e1/49
+l3_interlink_ip: 10.0.140.2/30
+
+l2vpcs:
+  - vpc: 1011
+    vpc_ints: e1/11-12
+    dst_ints: e1/11-12 Local ACI L2 Dual Sided vPC
+    dst_dev: bdc-lef05/06
+  - vpc: 115
+    vpc_ints: e1/15
+    dst_ints: 
+    dst_dev: bdc outside switch vpc
+
+peer_direct: adc-cswi02
+peer_direct_int: e1/47
+peer_direct_ip: 10.0.140.17/30
+
+peer_cross: adc-cswi01
+peer_cross_int: e1/44
+peer_cross_ip: 10.0.140.21/30
+
+l3ints2aci:
+  - ip: 10.0.140.29/30
+    int: e1/1
+    dst_int: e1/2
+    dst_dev: bdc-lef05
+  - ip: 10.0.140.37/30
+    int: e1/2
+    dst_int: e1/2
+    dst_dev: bdc-lef06
+
+l3ints2user:
+  - ip: 10.0.140.77/30
+    int: e1/6
+    dst_int: Te2/2/7
+    dst_dev: ds-adc-ops2-4500x-2
+
+l3ints2otv:
+  - ip: 10.0.140.194/29
+    vpc: 105
+    int: e1/5
+    dst_int: Te0/1/5 Po1
+    dst_dev: bdc-wrtr01    

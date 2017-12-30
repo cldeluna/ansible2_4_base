@@ -1,0 +1,6 @@
+---
+- name: Generate NTP Configuration
+  hosts: cisco
+
+  roles:
+    - ntp

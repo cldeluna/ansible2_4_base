@@ -1,0 +1,30 @@
+---
+- hosts: cisco 
+  connection: local
+  gather_facts: False
+  ignore_errors: yes
+
+  vars:
+    cli:
+        host: "{{ host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+
+  tasks:
+    - name: Iterate over show commands
+      ios_command:
+        commands: "{{ item }}"
+        provider: "{{ cli }}"
+
+      with_items:
+      - "show run"
+      - "show ip int br"
+      - "show version"
+      - "show ip route" 
+      - "show cdp nei" 
+
+      register: output
+
+    - debug: var=output
+
+    - local_action: copy content="{{ output }}" dest="./FACTs/{{ inventory_hostname }}.txt"

@@ -1,0 +1,59 @@
+---
+hostname: cs03
+partner_hostname: cs04
+
+loopback0: 10.0.140.211
+stp_pri: 4096
+
+# VPC Information
+# Peer Keepalive
+# Note Peer Keepalive Port channel is hardcoded to 1 in the template nxos_base_vpc.j2
+# Ports based on N9K-C93180YC-EX
+pk_context: Peer-Keepalive
+pk_ints: e1/43,e1/45
+pk_ip: 192.168.0.253
+pk_ip_dest: 192.168.0.254
+pk_ip_cidr: 30
+# Peer LInks
+pl_ints: e1/53,e1/54
+pl_po: 11
+vpc_pri: 1
+
+#Routing
+area: 0
+user_area: 40
+
+# Management Interface Configuration
+mgmt_ip: 10.1.10.133/24
+mgmt_gateway: 10.1.10.1
+
+# SNMP
+location: LAX Data Center Rack 101
+
+
+# Interfaces
+# L3 Interlink
+l3_interlink_int: e1/49
+l3_interlink_ip: 10.0.0.5/30
+
+l2vpcs:
+  - vpc: 1011
+    vpc_ints: e1/11-12
+    dst_ints: e1/11-12 Local ACI L2 Dual Sided vPC
+    dst_dev: lax-lef01/02
+  - vpc: 115
+    vpc_ints: e1/15
+    dst_ints: 
+    dst_dev: Dual Sided vPC to Internet Switch INSIDE
+
+
+
+l3ints:
+  - ip: 10.0.140.89/30
+    int: e1/13
+    dst_int: 
+    dst_dev: Test Switch     
+  - ip: 10.0.0.57/30
+    int: e1/41
+    dst_int: 
+    dst_dev: WAN Router L3

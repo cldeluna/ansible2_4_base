@@ -1,0 +1,22 @@
+---
+- hosts: lv1 
+  connection: local
+  gather_facts: False
+  ignore_errors: yes
+
+  vars:
+    cli:
+        host: "{{ host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+
+  tasks:
+    - name: Gather NX-OS Facts using the Ansible NX_OS Facts Module
+      nxos_facts:
+        provider: "{{ cli }}"
+
+      register: output
+
+    - debug: var=output
+
+    - local_action: copy content="{{ output }}" dest="./FACTs/{{ inventory_hostname }}-facts.txt"

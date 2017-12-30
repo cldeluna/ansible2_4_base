@@ -1,0 +1,7 @@
+hostname {{ inventory_hostname }}
+
+username {{ username }} password {{ password }}
+
+interface mgmt0
+  vrf member management
+  ip address {{ mgmt_ip }}

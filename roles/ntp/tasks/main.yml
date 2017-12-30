@@ -1,0 +1,7 @@
+---
+# tasks file for ntp
+- name: Create NTP Section of Cisco Device Configuration
+  template: 
+    src: ntp.j2
+    dest: ./CFGs/{{ inventory_hostname }}.cfg
+  with_items: ntp_servers

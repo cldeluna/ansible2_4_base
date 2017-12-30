@@ -1,0 +1,26 @@
+---
+
+timezone: PST -8 0
+summer_timezone: PDT
+domain: uwaco.net
+ntp1: 10.0.0.123
+ntp2: 10.0.1.23
+source_interface: mgmt0
+
+#Routing
+area: 0
+user_area: 40
+
+# SNMP
+contact: Network Services
+location: Administration Data Center (ADC)
+snmpv2: True
+rw: Trestels
+ro: Mavericks
+snmpv3: False
+
+
+# Syslog
+syslog1: 10.0.5.14
+syslog_level: 6
+

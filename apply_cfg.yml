@@ -1,0 +1,41 @@
+---
+- hosts: nexus_pair
+  connection: local
+  gather_facts: False
+  ignore_errors: yes
+
+  # Currently these variables are set in the inventory file
+  vars:
+    cli:
+        host: "{{ host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+
+  tasks:
+    - name: Print Ansible Inventory Hostname
+      debug:
+        msg: "Ansible Inventory variable: {{ inventory_hostname }}"
+
+    - name: Configure Using Ansible nxos_config Module
+      nxos_config:
+        provider: "{{ cli }}"
+        # Make a backup of the configuration prior to any updates
+        # backup files will be in the backup directory relative to the playbook
+        # The Ansible module will create the directory if not present
+        backup: yes
+        match: none
+        # Recommended for some configuration settings like setting spanning tree priority
+        timeout: 15
+        # Directory containing the configuration to apply
+        src: CFGs/{{ inventory_hostname }}.cfg
+        # These are settings to be used with the --diff argument passed to the playbook 
+        # and will compare running configuration to the intended configuration defined in the intended_config variable
+        intended_config: CFGs/{{ inventory_hostname }}.cfg
+        diff_against: intended
+
+      # Save the output
+      register: output
+
+    - name: Show Output Response from the Configuration Task
+      debug: var=output
+

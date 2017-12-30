@@ -1,0 +1,172 @@
+hostname {{ inventory_hostname }}
+
+int e1/1 - 40
+ shutdown
+
+cfs eth distribute
+no feature eigrp
+feature scp-server
+feature ospf
+feature pim
+feature udld
+feature interface-vlan
+feature netflow
+feature hsrp
+feature lacp
+feature dhcp
+feature vpc
+feature bfd
+feature tacacs+
+feature ntp
+feature pim
+service dhcp
+ip dhcp relay
+
+no password strength-check
+
+username {{ username }} password {{ password }}
+
+clock timezone {{ timezone }}
+clock summer-time {{ summer_timezone }}
+!
+ssh key rsa 2048
+
+spanning-tree mode rapid-pvst 
+
+no ip domain-lookup
+ip domain-name {{ domain }}
+
+
+
+interface loopback0
+  ip address {{ loopback0 }}/32
+
+! NTP
+ntp server {{ ntp1 }} prefer use-vrf management
+ntp server {{ ntp2 }} use-vrf management
+
+ntp source-interface {{ source_interface }}
+
+! vPC Base
+
+vrf context {{ pk_context }}
+
+interface {{ pk_ints }}
+  description To {{ partner_hostname }} {{ pk_ints }} L3 Peer-Keepalive Link Po1
+  no switchport
+  channel-group 1 mode active
+  no shutdown
+  spanning-tree port type network
+!
+
+interface port-channel1
+  description To {{ partner_hostname }} {{ pk_ints }} L3 Peer-Keepalive Link Po1
+  no switchport
+  vrf member Peer-Keepalive
+  ip address {{ pk_ip }}/{{ pk_ip_cidr }}
+  no shutdown
+!
+    
+interface {{ pl_ints }}
+  description To {{ partner_hostname }} {{ pl_ints }} VPC Peer Link Po{{ pl_po }}
+  switchport
+  switchport mode trunk
+  channel-group {{ pl_po }} mode active
+  no shutdown  
+  
+
+interface port-channel{{ pl_po }}
+  description VPC Domain Peer Link  
+  switchport
+  switchport mode trunk
+  vpc peer-link
+  no shutdown
+  spanning-tree port type network
+
+vpc domain {{ pl_po }}
+  role priority {{ vpc_pri }}
+  peer-keepalive destination {{ pk_ip_dest }} source {{ pk_ip }} vrf {{ pk_context }}
+  peer-gateway
+  peer-switch
+  layer3 peer-router
+  ip arp synchronize 
+  graceful consistency-check 
+  auto-recovery 
+  auto-recovery reload-delay 240
+
+spanning-tree vlan 1-3967 priority {{ stp_pri }}
+
+# Routing
+router ospf {{ pl_po }}
+  router-id {{ loopback0 }}
+  log-adjacency-changes
+  passive-interface default
+
+
+#Management
+
+interface mgmt0
+  vrf member management
+  ip address {{ mgmt_ip }}
+  no shutdown
+
+vrf context management
+  ip route 0.0.0.0/0 {{ mgmt_gateway }}
+
+# SNMP
+snmp-server contact {{ contact }}
+snmp-server location  {{ location }}
+snmp-server user admin network-admin auth md5 0x72615b97f3e5a66bd0396d0180652753 priv 0x72615b97f3e5a66bd0396d0180652753 localizedkey
+snmp-server enable traps link
+snmp-server community {{ rw }} group network-admin
+snmp-server community {{ ro }} group network-operator
+
+# Syslog
+logging logfile messages {{ syslog_level }}
+logging server {{ syslog1 }} 4 use-vrf management
+logging timestamp milliseconds
+logging monitor {{ syslog_level }}
+logging level local4 4
+
+
+# Interfaces
+
+# Layer 2 vPCs
+{% for vpc in l2vpcs %}
+
+no int po{{ vpc.vpc }}
+interface port-channel{{ vpc.vpc }}
+  description To {{ vpc.dst_dev }} {{ vpc.dst_ints }} {{ vpc.vpc }}
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan none
+  spanning-tree port type network
+  vpc {{ vpc.vpc }}
+  shutdown
+
+default int {{ vpc.vpc_ints }}
+interface {{ vpc.vpc_ints }}
+  description To {{ vpc.dst_dev }} {{ vpc.dst_ints }} {{ vpc.vpc }}
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan none
+  channel-group {{ vpc.vpc }} mode active
+  shutdown
+
+{% endfor %}
+
+
+
+{% for int in l3ints %}
+# L3 Routed Interfaces
+default int {{ int.int }}
+interface {{ int.int }}
+  description To {{ int.dst_dev }} {{ int.dst_int }} 
+  no switchport
+  ip address {{ int.ip }}
+  ip router ospf {{ pl_po }} area {{ area }}
+  no ip ospf passive-interface
+  shutdown
+
+{% endfor %}
+

@@ -24,7 +24,7 @@
     - name: Save Show Command output
       copy:
         content: "{{ intbr.stdout }}"
-        dest: "/ansible/show_commands/{{ inventory_hostname }}.log"
+        dest: ./SHOW/{{ inventory_hostname }}.log"
 
 
     - name: Backup a configuration on a device

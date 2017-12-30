@@ -1,25 +1,10 @@
-# NetDevOps - Trusty Ansible Network Automation Framework
+# NetDevOps - Xenial Ansible Network Automation Framework
 ## Using Ansible for Common Networking Tasks
 ### Created:  2016-06-05  
-### Modified: 2017-10-15
+### Modified: 2017-12-30
 #### Claudia de Luna (claudia.deluna@dimensiondata.com)
 
-
-The "Trusty Ansible project" grew from the desire to apply many of the DevOps principles to my day to day networking work and my desire to learn Ansible.
-
-These principles include:
-
-- Automation
-- Repeatability
-- Self Documenting
-- Idempotent
-- Immutable platform
-- Portability
-- Flexibility
-
-My goal was to develop a platform that would let me achieve all those things using relatively easy, cross platform, flexible tools and methods.
-
-To put this in proper context, I am a professional services network delivery engineer focused on data centers.  The most common network operating systems I work with are Cisco IOS (and other IOS flavors) and NX-OS based systems.
+Ubuntu based Container providing an Ansible 2.4 Control server and Python 2.7 environment along with an Ansible "getting started pack" for the Automation Framework Container.  The container provides a suitable environment for running scripts and playbooks from the [Emerging Technologies Team](https://dimensiondata.sharepoint.com/teams/ncgg1/SitePages/Main.aspx).
 
 Target Functions:
 - Automate the development of device specific configurations from templates and source data
@@ -38,7 +23,7 @@ Common Tasks that need to be executed on most, if not all, projects.
 * Audit Configurations
 * Testing
 
-In many cases I'm either on site or traveling with my laptop so the solution needed to be portable and flexible enough to deal with the differences I encounter across projects.  A solution that could exist on my laptop, my desktop, a local VM etc.. is key.
+The automation framework solution needed to be portable and flexible enough to deal with the differences encountered across projects.  A solution that could exist on any laptop, desktop, a local VM etc.. is key.
 
 Solution:
 
@@ -49,11 +34,19 @@ Ansible - Provides the framework to automate most of the target functions.  Its 
 Progress:
 
 Purpose built Docker image based on Ubuntu 16.04 (Xenial Xerus) with python, ansible, and a few other tools to make it a bit easier to work in the environment.
-https://github.com/cldeluna/trusty-ansible
+https://github.com/cldeluna/ansible2_4_base
 
 This image is currently working on Windows 7 and Mac OS-X (next test will be Windows 10 but still using Docker Tookbox).
 
-Simplistic Ansible playbook to back up configurations and run a variety of show commands and save the output on Cisco IOS devices.  I say simplistic because I want to move to a role based approach for eaven greater portability.
+Basic set of Ansible playbook to 
+- back up configurations 
+- run a variety of show commands and save the output on Cisco IOS devices
+- gather facts from Cisco IOS devices using the Ansible module
+- gather facts from Cisco NX-OS devices using the Ansible module
+- Generate semi-complex configurations
+- Apply configurations
+
+using standalone playbooks and roles.
 
 Assumptions:
 The environment will be on a laptop or destop running Windows 7 or Mac OS-X 10.11 (El Capitan) or later.
@@ -135,10 +128,10 @@ $ls -al
 + Add a few more tools and customizations to the Dockerfile
 + Add and Expand the Playbooks
 + Figure out how to get all the resulting log files and templates off the host
-+ Custom module for the auditing function?
 + Format the show commands logs
 + Staging QA
 + More detailed instructions
 + Add Ansible Tower for Client Demos
-+ Move to roles
 
+
+<script src="https://gist.github.com/jonschlinkert/5854601.js"></script>

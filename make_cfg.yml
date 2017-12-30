@@ -1,0 +1,19 @@
+---
+- hosts: nexus_pair
+  connection: local
+  gather_facts: False
+  ignore_errors: yes
+
+  vars:
+    cli:
+        host: "{{ host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+
+  tasks:
+    - name: Create config file from template
+      template:
+        # Update the src variable with the value of the desired template
+        src: templates/nxos_base_vpc.j2
+        dest: src/{{ inventory_hostname }}.cfg
+
