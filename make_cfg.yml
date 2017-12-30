@@ -15,5 +15,5 @@
       template:
         # Update the src variable with the value of the desired template
         src: templates/nxos_base_vpc.j2
-        dest: src/{{ inventory_hostname }}.cfg
+        dest: CFGs/{{ inventory_hostname }}.cfg
 
