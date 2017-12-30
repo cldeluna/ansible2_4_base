@@ -27,4 +27,4 @@
 
     - debug: var=output
 
-    - local_action: copy content="{{ output.stdout_lines }}" dest="./SHOW/{{ inventory_hostname }}.show"
+    - local_action: copy content="{{ output }}" dest="./SHOW/{{ inventory_hostname }}.show"
