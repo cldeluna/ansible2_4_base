@@ -23,8 +23,8 @@
       - "show ip route" 
       - "show cdp nei" 
 
-      register: output.stdout_lines
+      register: output
 
-    - debug: var=output
+    - debug: var=output.stdout_lines
 
-    - local_action: copy content="{{ output }}" dest="./SHOW/{{ inventory_hostname }}.show"
+    - local_action: copy content="{{ output.stdout_lines }}" dest="./SHOW/{{ inventory_hostname }}.show"
