@@ -6,6 +6,11 @@
   gather_facts: False
   ignore_errors: yes
 
+  vars:
+    cli:
+        host: "{{ host }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
 
   tasks:
 
@@ -29,13 +34,9 @@
 
 
     - name: Backup a configuration on a device
-      ios_template:
-        host: "{{ inventory_hostname }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
-        backup: true
-        src: ntp.j2
-
+      ios_config:
+        provider: "{{ cli }}"
+        backup: yes
 
       register: bkup
 
