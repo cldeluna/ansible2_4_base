@@ -1,6 +1,7 @@
 ---
 hostname: cs04
 partner_hostname: cs03
+
 loopback0: 10.0.140.212
 stp_pri: 4096
 
