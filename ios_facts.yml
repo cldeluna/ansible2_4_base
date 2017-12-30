@@ -11,17 +11,9 @@
         password: "{{ password }}"
 
   tasks:
-    - name: Iterate over show commands
-      ios_command:
-        commands: "{{ item }}"
+    - name: Gather IOS Facts using the Ansible IOS Facts Module
+      ios_facts:
         provider: "{{ cli }}"
-
-      with_items:
-      - "show run"
-      - "show ip int br"
-      - "show version"
-      - "show ip route" 
-      - "show cdp nei" 
 
       register: output
 
