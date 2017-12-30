@@ -1,7 +1,7 @@
 ---
 hostname: cs02
 partner_hostname: cs01
-loopback0: 10.0.140.214
+loopback0: 10.0.0.202
 stp_pri: 8192
 
 # VPC Information

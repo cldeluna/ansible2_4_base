@@ -2,7 +2,7 @@
 hostname: cs03
 partner_hostname: cs04
 
-loopback0: 10.0.140.211
+loopback0: 10.0.0.203
 stp_pri: 4096
 
 # VPC Information

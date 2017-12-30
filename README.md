@@ -103,24 +103,54 @@ Clone the Base Ansible 2.4 repository which has a base Ansible environment.
 $git clone https://github.com/cldeluna/ansible2_4_base.git
 cd ansible2_4_base
 ```
-4. Update the hosts file to reflect the devices to act on
+4. Move to the ansible2_4_base directory
+5. Update the hosts file to reflect the devices to act on. Sample entries are included but commented out. Update existing entries or create your own groups and inventory group variables.
 6. Update the test-ios.yml or get_ios_commands.yml file to update the hosts and commands to execute.
-7. Confirm that config backups have been saved in the /ansible directory (get_ios_commands.yml)
+7. With the get_ios_commands.yml playbook confirm that config backups have been saved in the /ansible/SHOW/ directory (get_ios_commands.yml)
 
 Look for *.show commands.
 ```
 $ls -al *.show
 ```
-8. Confirm that show command output has been saved in the /ansible/show_commands directory (test-ios.yml).
+8. With the test-ios.yml playbook confirm that show command output has been saved in the /ansible/SHOW directory and that backups of the device configurations were saved to /ansible/backup.
 
-Move into the /ansible/show_commands directory.
+Move into the /ansible/SHOW directory.
 ```
-$cd show_commands
+$cd SHOW
 ```
 List files.
 ```
 $ls -al
+# Look for *.log files for the ouput of the show commands
 ```
+
+Move into the /ansible/backup directory.
+```
+$cd backup
+```
+List files.
+```
+$ls -al
+# Look for <device name>_config.<timestamp> files for configuration backups of each devices in the inventory group or device used in the playbook
+
+✔ ~/ansible/ansible2_4_base/backup [master|…7] 
+14:11 $ ls
+arctic-sw03_config.2017-12-30@13:38:17
+✔ ~/ansible/ansible2_4_base/backup [master|…7] 
+14:11 $ 
+
+```
+
+The following sample playbooks are also included:
+
+ios_facts.yml and nxos_facts.yml are playbooks which gather facts from ios and NX-OS devices respectively using the Ansible gather facts modules. 
+
+ntp_role.yml
+this utilizes the "ntp" role under the roles directory to generate a base ntp config snippet and serves as an example playbook for configurations using a role.
+
+make_cfg.yml and apply.cfg make nexus base vpc pair configurations for a pair of nexus and then applies those configs.
+
+
 
 ## Things to work on next:
 
