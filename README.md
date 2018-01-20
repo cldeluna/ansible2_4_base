@@ -2,7 +2,7 @@
 ## Using Ansible for Common Networking Tasks
 ### Created:  2016-06-05  
 ### Modified: 2017-12-30
-#### Claudia de Luna (claudia.deluna@dimensiondata.com)
+#### Claudia de Luna (claudia@indigowire.net)
 
 Ubuntu based Container providing an Ansible 2.4 Control server and Python 2.7 environment along with an Ansible "getting started pack" for the Automation Framework Container.  The container provides a suitable environment for running scripts and playbooks from the [Emerging Technologies Team](https://dimensiondata.sharepoint.com/teams/ncgg1/SitePages/Main.aspx).
 
@@ -159,9 +159,7 @@ make_cfg.yml and apply.cfg make nexus base vpc pair configurations for a pair of
 + Add and Expand the Playbooks
 + Figure out how to get all the resulting log files and templates off the host
 + Format the show commands logs
-+ Staging QA
++ QA
 + More detailed instructions
-+ Add Ansible Tower for Client Demos
++ Add Ansible Tower AWX for Client Demos
 
-
-<script src="https://gist.github.com/jonschlinkert/5854601.js"></script>
