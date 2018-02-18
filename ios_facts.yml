@@ -15,8 +15,9 @@
       ios_facts:
         provider: "{{ cli }}"
 
-      register: output
+      register: facts_output
 
-    - debug: var=output
+    - debug: var=facts_output
+    - debug: var=facts_output.ansible_facts.ansible_net_version
 
     - local_action: copy content="{{ output }}" dest="./FACTs/{{ inventory_hostname }}.txt"
