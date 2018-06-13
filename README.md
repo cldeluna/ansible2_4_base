@@ -1,10 +1,10 @@
 # NetDevOps - Xenial Ansible Network Automation Framework
 ## Using Ansible for Common Networking Tasks
 ### Created:  2016-06-05  
-### Modified: 2017-12-30
+### Modified: 2018-06-01
 #### Claudia de Luna (claudia@indigowire.net)
 
-Ubuntu based Container providing an Ansible 2.4 Control server and Python 2.7 environment along with an Ansible "getting started pack" for the Automation Framework Container.  The container provides a suitable environment for running scripts and playbooks from the [Emerging Technologies Team](https://dimensiondata.sharepoint.com/teams/ncgg1/SitePages/Main.aspx).
+Ubuntu based Container providing an Ansible 2.4 Control server and Python 2.7 environment along with an Ansible "getting started pack" for the Automation Framework Container.  The container provides a suitable environment for running scripts and playbooks focused on Ansible 2.4 style network automation playbooks.
 
 Target Functions:
 - Automate the development of device specific configurations from templates and source data
@@ -15,7 +15,7 @@ Target Functions:
 
 The ability to instantiate a "framework" to achieve these tasks across Windows, Macintosh, and Linux based systems including laptops was a key requirement.
 
-Common Tasks that need to be executed on most, if not all, projects.
+Typical or common tasks that need to be executed on most, if not all, projects.
 
 * Run a variety of show commands for both initial discovery, baselines, and testing.
 * Compare existing configurations against a master template both to assess impact of change and for compliance.
@@ -23,7 +23,7 @@ Common Tasks that need to be executed on most, if not all, projects.
 * Audit Configurations
 * Testing
 
-The automation framework solution needed to be portable and flexible enough to deal with the differences encountered across projects.  A solution that could exist on any laptop, desktop, a local VM etc.. is key.
+An automation framework solution should be portable and flexible enough to deal with the differences encountered across projects.  A solution that can exist on any laptop, desktop, a local VM etc.. is key.
 
 Solution:
 
@@ -36,9 +36,10 @@ Progress:
 Purpose built Docker image based on Ubuntu 16.04 (Xenial Xerus) with python, ansible, and a few other tools to make it a bit easier to work in the environment.
 https://github.com/cldeluna/ansible2_4_base
 
-This image is currently working on Windows 7 and Mac OS-X (next test will be Windows 10 but still using Docker Tookbox).
+This image is currently working on Windows 7 and Mac OS-X (next test will be Windows 10 but still using Docker Toolbox).
 
-Basic set of Ansible playbook to 
+Basic set of Ansible playbook to:
+ 
 - back up configurations 
 - run a variety of show commands and save the output on Cisco IOS devices
 - gather facts from Cisco IOS devices using the Ansible module
